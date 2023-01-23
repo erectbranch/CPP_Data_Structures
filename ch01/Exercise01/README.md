@@ -41,7 +41,7 @@ public:
 	dynamic_array(int n)
 	{
 		this->n = n;
-		data = new T[n];
+		data = new T[n];    // size n인 type T형 array를 동적 할당
 	}
 
 	dynamic_array(const dynamic_array<T>& other)
@@ -123,7 +123,7 @@ public:
 
 <br/>
 
-8. array에 저장된 모든 data를 문자열로 반환하는 to_string() member function을 작성한다. 
+8. array에 저장된 모든 data를 문자열로 반환하는 `to_string()` member function을 작성한다. 
 
 - function은 data 구분을 위해 문자열 sep을 parameter로 받으며, sep의 default 값은 쉼표(",")로 지정할 것이다.
 

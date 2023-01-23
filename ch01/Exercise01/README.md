@@ -8,6 +8,8 @@
 
 - 여러 반을 하나로 합치는 기능도 지원한다.
 
+<br/>
+
 1. 필요한 header file을 include한다.
 
 ```cpp
@@ -15,6 +17,8 @@
 #include <sstream>
 #include <algorithm>
 ```
+
+<br/>
 
 2. dynamic_array라는 이름의 class template를 작성하고, 주요 member variable을 declaration한다.
 
@@ -25,6 +29,8 @@ class dynamic_array
     T* data;
     size_t n;
 ```
+
+<br/>
 
 3. array size를 argument로 받는 constructor(생성자)와 copy constructor(복사 생성자)를 추가한다.
 
@@ -48,6 +54,8 @@ public:
 	}
 ```
 
+<br/>
+
 4. member data에 직접 접근하기 위한 operator[]와 `at()` function을 작성한다. operator[]를 제공함으로써 `std::array`와 비슷한 방식으로 array element에 접근할 수 있다.
 
 ```cpp
@@ -69,6 +77,8 @@ public:
 	}
 ```
 
+<br/>
+
 5. array size를 반환하는 `size()` member function과 destructor(소멸자)를 구현한다.
 
 > destructor는 memory leak을 방지하기 위해 allocate된 memory를 delete한다.
@@ -85,6 +95,8 @@ public:
     }
 ```
 
+<br/>
+
 6. dynamic_array의 array element를 순회할 때 사용할 iterator 관련 function을 정의한다.
 
 ```cpp
@@ -93,6 +105,8 @@ public:
 	T* end() { return data + n; }
 	const T* end() const { return data + n; }
 ```
+
+<br/>
 
 7. 두 array를 하나로 합치는 연산을 수행하는 operator+ function을 정의한다. 이 function은 `friend`로 선언한다.
 
@@ -106,6 +120,8 @@ public:
 		return result;
 	}
 ```
+
+<br/>
 
 8. array에 저장된 모든 data를 문자열로 반환하는 to_string() member function을 작성한다. 
 
@@ -128,6 +144,8 @@ public:
 };
 ```
 
+<br/>
+
 9. 학생 정보를 저장할 struct(구조체) student를 정의한다. 
 
 - struct는 학생의 이름 'name'과, 학급 정보를 담고 있는 'standard' member를 가진다.
@@ -146,6 +164,8 @@ std::ostream& operator<<(std::ostream& os, const student& s)
 	return (os << "[" << s.name << ", " << s.standard << "]");
 }
 ```
+
+<br/>
 
 10. main() function에서 dynamic_array를 사용하는 code를 작성한다.
 
@@ -166,10 +186,10 @@ int main()
 		class1[i] = student{name, standard};
 	}
 
-	// 배열 크기보다 큰 인덱스의 학생에 접근
+	// array size보다 큰 인덱스의 학생에 접근
 	try
 	{
-		// 아래 주석을 해제하면 프로그램이 비정상 종료합니다.
+		// 아래 주석을 해제하면 프로그램이 비정상 종료된다.
 		// class1[nStudents] = student {"John", 8}; // 예상할 수 없는 동작
 
 		class1.at(nStudents) = student{"John", 8}; // 예외 발생
@@ -179,7 +199,7 @@ int main()
 		std::cout << "예외 발생!" << std::endl;
 	}
 
-	// 깊은 복사
+	// deep copy
 	auto class2 = class1;
 	std::cout << "1반을 복사하여 2반 생성: " << class2.to_string() << std::endl;
 
@@ -190,6 +210,8 @@ int main()
 	return 0;
 }
 ```
+
+<br/>
 
 11. 작성한 program에 'Kim(15), Lee(15), Park(16)을 입력으로 사용하여 실행해 본다.
 
